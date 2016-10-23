@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Oncleben31.cc</title>
+    <description>Les contributions à l'Open Source et les découvertes d'Oncleben31 partagées avec l'Internet mondial.
+</description>
+    <link>/</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 23 Oct 2016 19:46:10 +0000</pubDate>
+    <lastBuildDate>Sun, 23 Oct 2016 19:46:10 +0000</lastBuildDate>
+    <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Déploiement de Jekyll sur Github Pages</title>
+        <description>&lt;p&gt;&lt;strong&gt;Jekyll&lt;/strong&gt; et &lt;strong&gt;Github Pages&lt;/strong&gt; sont étroitement liés. En effet, Github permet d’utiliser des sources Jekyll dans un dépôt pour générer automatiquement les pages HTML associées. Le site sera alors accessible à une adresse du type &lt;code class=&quot;highlighter-rouge&quot;&gt;your_pseudo.github.io&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Conséquence, il est assez facile d’héberger gratuitement son site Jekyll grâce à Github Pages.&lt;/p&gt;
+
+&lt;p&gt;Dans cet article, je donne quelques astuces que j’ai utilisées pour réussir l’installation d’un site Jekyll avec le thème minima sur Github Pages. Par contre, je ne reprendrai pas toutes les étapes qui sont décrites à plein d’autres endroits sur Internet.&lt;/p&gt;
+
+&lt;h2 id=&quot;avantages-et-inconvnients&quot;&gt;Avantages et Inconvénients&lt;/h2&gt;
+
+&lt;p&gt;Pour commencer une petite comparaison des avantages et inconvénients liées au choix d’héberger son Jekyll sur Github Pages. Vous trouverez ci-dessous des évidences mais aussi des subtilités que j’ai découvertes en testant ou creusant certaines fonctionnalités.&lt;/p&gt;
+
+&lt;p&gt;Les avantages liés à l’utilisation de Github Pages sont:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;l’hébergement est gratuit ;&lt;/li&gt;
+  &lt;li&gt;il n’y a pas de maintenance du serveur ou de dépendances à gérer. Github s’occupe de tout ;&lt;/li&gt;
+  &lt;li&gt;la gestion de configuration et la sauvegarde est garantie par construction (basée sur &lt;strong&gt;Git&lt;/strong&gt;) ;&lt;/li&gt;
+  &lt;li&gt;l’utilisation d’outils d’intégration continue est facile et gratuit ;&lt;/li&gt;
+  &lt;li&gt;il y a une grosse communauté regroupant les éditeurs de sites basés sur Jekyll et hébergés sur Github Pages. Facile de voir les sources des autres et de demander de l’aide.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Les inconvénients liés à l’utilisation de Github Pages sont:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;sauf si vous êtes un utilisateur payant, votre dépôt sur Github est public. Vos sources sont donc visibles ;&lt;/li&gt;
+  &lt;li&gt;Github limite les plugins utilisables. Si vous voulez ou devez utiliser des plugins autres que ceux autorisés par Github, vous ne pourrez pas générer automatique votre site web à partir des sources. (un contournement est possible) ;&lt;/li&gt;
+  &lt;li&gt;si vous voulez utiliser votre propre nom de domaine, il sera associé à tous les dépôts de votre compte. (un contournement est possible) ;&lt;/li&gt;
+  &lt;li&gt;Github gère sa propre liste de dépendances. Il se peut que la dernière version de certain modules ne soit pas déployé immédiatement. Exemple Jekyll 3.3.0 sortie le 6 octobre 2016 n’est toujours pas disponible dans la gem github-pages.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;les-patchs&quot;&gt;Les patchs&lt;/h2&gt;
+
+&lt;p&gt;Lorsque j’ai commencé la mise en place de ce blog. La gem github-pages était en version v97 et basée sur jekyll v3.2.1 et minima v1.2.0.
+Le theme minima dans cette version avait besoin d’être modifié pour fonctionner correctement en local. Mes patchs sont disponibles dans les commits suivants :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;046abe81ffb0f88c698cb6b5c10f5a489ce6a14d&lt;/li&gt;
+  &lt;li&gt;c5f4ca38e4d81a4e822f4e3f0b9cbe8a00a781cb&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ces correctifs sont inclus depuis la version v2.0.0 de minima.&lt;/p&gt;
+
+&lt;h2 id=&quot;le-paramtrage&quot;&gt;Le paramétrage&lt;/h2&gt;
+
+&lt;p&gt;Il y a une astuce pour que le site fonctionne en local et sur Github Pages. Ma solution consiste a utiliser deux fichiers de configuration:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; qui contient le paramétrage pour l’environnement de production&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;_config.dev.yml&lt;/code&gt; qui contient une surcharge de deux paramètres pour garantir le fonctionnement en local.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Le fichier &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.dev.yml&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# config for local testing&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# use it with: bundle exec jekyll serve --host 0.0.0.0 --config _config.yml,_config_dev.yml&lt;/span&gt;
+
+&lt;span class=&quot;s&quot;&gt;baseurl&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the subpath of your site, e.g. /blog&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the base hostname &amp;amp; protocol for your site&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Pour utiliser ce double paramétrage il faut lancer lee serveur local avec la commande:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve --config _config.yml,_config_dev.yml
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;la-branche&quot;&gt;La branche&lt;/h2&gt;
+
+&lt;p&gt;Dans la documentation on trouves une contrainte historique qui consiste à demander l’installation des sources Jekyll dans la branche &lt;code class=&quot;highlighter-rouge&quot;&gt;gh-pages&lt;/code&gt;. En faite, vous pouvez mettre vos sources dans n’importe quelle branche à partir du moment où vous l’indiquez dans les paramétrages de votre dépôt.&lt;/p&gt;
+
+&lt;p&gt;Je trouve que la branche &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; est plus pratique dans le cadre de mon blog.&lt;/p&gt;
+
+&lt;h2 id=&quot;les-contournements&quot;&gt;Les contournements&lt;/h2&gt;
+
+&lt;p&gt;J’ai listé, plus haut, quelques inconvénients qui sont contournables.&lt;/p&gt;
+
+&lt;h3 id=&quot;github-pages-et-plugins&quot;&gt;Github Pages et plugins&lt;/h3&gt;
+
+&lt;p&gt;Le premier contournement concerne les plugins qui ne sont pas toléré par Github Pages. Le contournement consiste à continuer à gérer ses sources sur Github (sur la branche master par exemple), mais faire la génération des pages a l’extérieurs de Github et de les synchroniser avec la branche gh-pages. La génération pouvant se la faire manuellement en local sur votre machine, ou automatiquement avec un outil d’intégration continue comme &lt;a href=&quot;http://travis-ci.org&quot;&gt;Travis CI&lt;/a&gt; par exemple.&lt;/p&gt;
+
+&lt;p&gt;Si vous voulez allez plus loin dans ce type de solution je vous conseille de regarder &lt;a href=&quot;https://gist.github.com/domenic/ec8b0fc8ab45f39403dd&quot;&gt;le Gist de Domenic Denicola&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;github-pages-et-nom-de-domaine&quot;&gt;Github Pages et nom de domaine&lt;/h3&gt;
+&lt;p&gt;Le second contournement concerne le nom de domaine. Il est relativement facile d’acheter un nom de domaine et de le rediriger vers Github pour remplacer les URL du type &lt;code class=&quot;highlighter-rouge&quot;&gt;votre_pseudo.github.io/votre_depot&lt;/code&gt;. Par contre, tous les dépôt de votre compte utilisant Github Pages seront accessibles sur votre nom de domaine. Le contournement consiste à créer une organisation pour votre projet. D’héberger le dépôt de votre site avec cette organisation et de diriger votre nom de domaine vers le dépôt de l’organisation. Ainsi le nom de domaine ne sera pas pollué par vos autres dépôts.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 16 Oct 2016 00:00:00 +0000</pubDate>
+        <link>/article/deploiement-jekyll-sur-github-pages/</link>
+        <guid isPermaLink="true">/article/deploiement-jekyll-sur-github-pages/</guid>
+        
+        <category>github</category>
+        
+        <category>jekyll</category>
+        
+        
+        <category>article</category>
+        
+      </item>
+    
+      <item>
+        <title>Initiation au référencement : à lire avant de commencer son blog</title>
+        <description>&lt;p&gt;Je republie après mise-à-jour un article de l’ancienne version de mon blog concernant le référencement. L’objectif est de donner une rapide initiation aux concepts d’optimisation de l’indexation par les moteurs de recherche.&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Je partage ici une constatation à propos des blogs et de l’optimisation de l’indexation par les moteurs de recherche (aussi appelé référencement ou SEO en anglais). Il y a quelques notions à bien comprendre avant de se lancer, car elles peuvent avoir un impact fort sur l’architecture de votre blog. D’autre part si vous deviez vous intéresser au référencement une fois votre site en place et rempli de contenu, les optimisations à faire vous obligeront sûrement à modifier le contenu et les URL de vos pages. Autant donc être sensibilisé à cette notion dès le départ.&lt;/p&gt;
+
+&lt;p&gt;Je ne vais pas rentrer dans les détails et dans la technique car le référencement est un métier à part entière qui se base sur de la théorie et surtout de l’expérimentation. Voilà donc les concepts à connaître.&lt;/p&gt;
+
+&lt;h2 id=&quot;les-bases&quot;&gt;Les bases&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Les moteurs de recherche ne reférencent pas des sites mais des pages&lt;/strong&gt;. Ça peut paraître trivial comme information mais c’est important. Cela implique qu’il ne suffit pas de mettre en place une stratégie à la conception du site (comme soumettre un sitemap, revoir le format des titres des pages du site ou optimiser le contenu des headers de chaque page). Si le référencement de votre site est important, il faut y penser à chaque fois qu’une nouvelle page est ajoutée.&lt;/p&gt;
+
+&lt;p&gt;Dans la suite logique du premier point &lt;strong&gt;la priorité est à mettre sur le contenu du site&lt;/strong&gt;. C’est votre atout majeur pour être bien référencé par les moteurs de recherche. Il y a quelques astuces données par les experts en SEO pour optimiser votre contenu.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;La structure des permaliens doit être de la forme &lt;code class=&quot;highlighter-rouge&quot;&gt;/%postnames%/&lt;/code&gt; ou &lt;code class=&quot;highlighter-rouge&quot;&gt;/%category%/%postnames%/&lt;/code&gt;. Les autres sont inutiles car n’apportent pas d’infos utiles au référencement et rallonge vos URL.&lt;/li&gt;
+  &lt;li&gt;Le slug (partie variable de votre URL) ne doit pas être trop long, doit contenir les mots clés importants et ne doit pas contenir de mots banales (un, de, le, pour, etc…).&lt;/li&gt;
+  &lt;li&gt;Les mots clés importants de votre contenu doivent si possible être présent dans l’URL, dans le titre et dans les premières lignes de l’article.&lt;/li&gt;
+  &lt;li&gt;Les premiers caractères de votre article seront repris par le moteur de recherche pour présenter votre page dans la liste des résultats. Il faut donc que les premiers mots donnent envie aux lecteurs de visiter votre site. Il est possible aussi de dire quelle phrase utiliser pour la description à l’aide d’une balise meta (voir plugin ci-dessous).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Il peut être très intéressant d’avoir &lt;strong&gt;une page thématique&lt;/strong&gt; qui redirige vers les contenus les plus intéressants et les plus fréquentés de votre site. Ce type de page devrait être bien placé dans les résultats des moteurs de recherche.&lt;/p&gt;
+
+&lt;p&gt;Il faut éviter le &lt;strong&gt;contenu dupliqué&lt;/strong&gt;. Il peut arriver qu’un contenu soit accessible par l’intermédiaire de plusieurs URL différentes ou que des pages de votre site ont le même couple titre/description. Les moteurs de recherche n’aiment pas du tout. La cause racine principale de ce type de problème pour les blogs vient  des archives. Avec WordPress par exemple, on peut accéder aux archives temporelles, aux archives de catégories ou aux archives d’un auteur en particulier. Le risque que le contenu soit identique est fort. Il existe des solutions si vous ne pouvez pas faire autrement en ajoutant des balises meta. Je vous laisse chercher sur Internet pour avoir plus d’information à ce sujet.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;La vitesse de chargement des pages&lt;/strong&gt; est importante pour le confort de vos lecteurs et pour le référencement par les moteurs de recherche. Les axes à connaître pour l’optimiser :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Si vous utilisez un CMS qui génère un site dynamique, &lt;strong&gt;utilisez le moins de plugins possible&lt;/strong&gt;. C’est évident, ils peuvent vous faciliter la tâche, mais ils peuvent détériorer les performances. De nombreux plugins peuvent être remplacés par des modifications directement dans le thème du site. Dans WordPress, les thèmes enfants ont grandement facilité le travail dans les thèmes.&lt;/li&gt;
+  &lt;li&gt;Si vous utilisez un CMS qui génère un site dynamique, &lt;strong&gt;utilisez un plugin de cache&lt;/strong&gt;. Il en existe de nombreux et chacun a ces avantages. Je vous conseille de rechercher sur Internet pour trouver celui qui correspond à votre besoin.&lt;/li&gt;
+  &lt;li&gt;Vous pouvez &lt;strong&gt;renoncer aux CMS et opter pour un site statique&lt;/strong&gt;. Il y a de nombreuse solutions qui existent comme &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; (que j’utilise aujourd’hui pour ce blog). C’est comme si vous aviez une interface d’administration en local. Le framework s’occupe de générer le site et de le publier. Le résultat est un site avec des vitesses de chargement imbattables.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Quel que soit la solution retenue, il existe de nombreux plugins (pour Wordpress ou Jekyll) avec le tag SEO pour vous aider à optimiser votre référencement par les moteurs de recherche :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Du côté de WordPress, &lt;a href=&quot;https://yoast.com/wordpress/plugins/seo/&quot;&gt;WordPress SEO by Yoast&lt;/a&gt; est un des meilleurs à mon goût, car il propose une sorte de check liste, lors de la rédaction d’une page ou d’un article, qui vous permet d’optimiser votre contenu vis-à-vis du référencement.&lt;/li&gt;
+  &lt;li&gt;Du coté de Jekyll, il y a moins de choix car pas mal de paramètres ayant un impact sur le référencement sont éditables lors de la création du contenu. Il y a le plugin &lt;a href=&quot;https://github.com/jekyll/jekyll-seo-tag&quot;&gt;jekyll-seo-tag&lt;/a&gt; qui permet quand même de faciliter cette optimisation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;les-nouveauts&quot;&gt;Les nouveautés&lt;/h2&gt;
+
+&lt;p&gt;Depuis la première publication de cet article, de nouveaux paramètres importants ont émergé dans le référencement.&lt;/p&gt;
+
+&lt;p&gt;Le plus important est &lt;strong&gt;la capacité de votre site à fonctionner sur des appareils mobiles&lt;/strong&gt;. On parle généralement de site “&lt;em&gt;responsive&lt;/em&gt;” (comprendre &lt;em&gt;adaptable aux différents formats d’écran&lt;/em&gt;). Les moteurs de recherche favoriseront les sites qui fonctionnent sur tous les appareils populaires.&lt;/p&gt;
+
+&lt;p&gt;Le second paramètre notable est &lt;strong&gt;l’intégration de vos liens aux réseaux sociaux&lt;/strong&gt;. En effet les réseaux sociaux sont de plus en plus source de trafic, il est donc primordial d’optimiser la façon dont apparaissent les liens vers vos pages quand ils sont publiés sur ces réseaux. Je ne vais pas rentrer dans le détail, internet est votre ami pour approfondir ce sujet.&lt;/p&gt;
+
+&lt;p&gt;Un troisième paramètre pris en compte est &lt;strong&gt;l’utilisation
+ d’un cryptage HTTPS&lt;/strong&gt; pour votre site. Google a décidé de favoriser ceux qui sont sensibles à la sécurité. Si vous utiliser Github Pages pour héberger votre site statique vous pouvez bénéficier d’une adresse utilisant le protocol HTPPS  (sauf si vous utilisez un nom de domaine personnalisé).&lt;/p&gt;
+
+&lt;h2 id=&quot;rester-inform&quot;&gt;Rester informé&lt;/h2&gt;
+
+&lt;p&gt;Le dernier conseil que je pourrai donner : si vous voulez en savoir plus il faut lire régulièrement les sites spécialisés en SEO sur internet. Les moteurs de recherche changeant régulièrement leur algorithmes, il faut savoir réagir pour garder ses pages bien positionnées dans les résultats des moteurs de recherche.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Liste de lecture non exhaustive et accessible aux débutants :&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.seomix.fr/&quot;&gt;Seomix&lt;/a&gt; et &lt;a href=&quot;http://floriankarmen.com/&quot;&gt;Le blog de Florian Karmen&lt;/a&gt; (en français)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://yoast.com/&quot;&gt;Yoast&lt;/a&gt; et le blog de &lt;a href=&quot;http://www.mattcutts.com/blog/type/googleseo/&quot;&gt;Matt Cutts&lt;/a&gt; (en anglais)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;en-conclusion&quot;&gt;En conclusion&lt;/h2&gt;
+
+&lt;p&gt;J’espère que cette initiation sera utile à ceux qui débutent en leur permettant d’éviter de réaliser trop tard les optimisations nécessaires pour améliorer son référencement. Les autres, vous pouvez compléter ou corriger si nécessaire :wink:&lt;/p&gt;
+</description>
+        <pubDate>Tue, 04 Oct 2016 00:00:00 +0000</pubDate>
+        <link>/article/seo-initiation-referencement/</link>
+        <guid isPermaLink="true">/article/seo-initiation-referencement/</guid>
+        
+        <category>SEO</category>
+        
+        <category>wordpress</category>
+        
+        <category>jekyll</category>
+        
+        
+        <category>article</category>
+        
+      </item>
+    
+      <item>
+        <title>Jekyll dans une machine virtuelle avec Vagrant et VirtualBox</title>
+        <description>&lt;p&gt;Dans cet article je vous explique pourquoi et comment j’ai mis en place un environnement de development Jekyll basé sur une machine virtuelle en utilisant Vagrant. Jekyll ici n’est qu’un example, vous pouvez utiliser cette méthode dans de nombreux autres cas.&lt;/p&gt;
+
+&lt;h2 id=&quot;pourquoi-&quot;&gt;Pourquoi ?&lt;/h2&gt;
+
+&lt;p&gt;En faisant complètement autre chose, je suis tombé sur une &lt;a href=&quot;http://digitalshore.io/jekyll-better-choice-than-joomla-wordpress/&quot;&gt;présentation de Jekyll ainsi qu’une comparaison entre cet outil permettant de faire des blogs statiques et Wordpress&lt;/a&gt;. Je suis rapidement convaincu par l’argumentaire et ça me donne envie de ressusciter oncleben31.cc&lt;/p&gt;
+
+&lt;p&gt;Et hop ! Me voilà lancé dans la découverte de cet outil et des différentes manières de l’utiliser.&lt;/p&gt;
+
+&lt;p&gt;Sur le même blog qui m’a fait découvrir Jekkyl, j’ai lu un article &lt;a href=&quot;http://digitalshore.io/set-up-a-local-linux-development-environment-with-vagrant/&quot;&gt;expliquant les avantages de travailler avec une machine virtuelle&lt;/a&gt; :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;les conflits avec les outils et binaires de notre OS sont évités ;&lt;/li&gt;
+  &lt;li&gt;les versions de nos outils, binaires ou dépendances sont paramétrables en fonction des projets en cours de développement ;&lt;/li&gt;
+  &lt;li&gt;l’environnement de production d’un fournisseur d’hébergement peut être répliqué en local pour éviter de découvrir des problèmes de compatibilité pendant le déploiement ;&lt;/li&gt;
+  &lt;li&gt;il est possible de synchroniser des fichiers entre la VM et l’OS de votre machine.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Mais là où c’est vraiment fort c’est que grâce à Vagrant, la construction et le paramétrage de la machine virtuelle est complètement automatisée. Ainsi le paramétrage des machines virtuelles utilisées est facile à sauvegarder et rétablir en cas de besoin.&lt;/p&gt;
+
+&lt;h2 id=&quot;comment-&quot;&gt;Comment ?&lt;/h2&gt;
+
+&lt;h3 id=&quot;tlchargements-et-installations&quot;&gt;Téléchargements et Installations&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.vagrantup.com/&quot;&gt;Vagrant&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/&quot;&gt;VirtualBox&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Vous pouvez utiliser un autre moteur de machine virtuelle si vous voulez. L’avantage de celui-ci est qu’il est open source et populaire.&lt;/p&gt;
+
+&lt;h3 id=&quot;paramtrage-de-la-machine-virtuelle&quot;&gt;Paramétrage de la machine virtuelle.&lt;/h3&gt;
+&lt;p&gt;L’idée c’est de partir de rien ! Créez le répertoire qui va héberger votre VM et initiez le fichier de paramétrage &lt;code class=&quot;highlighter-rouge&quot;&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;mkdir monProjet-vm
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;monProjet-vm
+touch Vagrantfile&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Vous trouverez plus bas un exemple avec le fichier &lt;code class=&quot;highlighter-rouge&quot;&gt;Vagrant&lt;/code&gt; que j’utilise en ce moment.&lt;/p&gt;
+
+&lt;h3 id=&quot;lancement-de-la-cration-et-dmarrage-de-la-vm&quot;&gt;Lancement de la création et démarrage de la VM&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;vagrant up&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Lors du premier lancement la VM sera créée. C’est-à-dire que l’image sera téléchargée, ensuite la VM sera lancée et toutes les dépendances paramétrées seront installées.
+Lors des lancements suivants, la VM sera juste démarrée.&lt;/p&gt;
+
+&lt;h3 id=&quot;connexion--la-vm-en-ssh&quot;&gt;Connexion à la VM en SSH&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;vagrant ssh&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;enjoy--&quot;&gt;Enjoy ;-)&lt;/h3&gt;
+&lt;p&gt;Vous êtes connecté ! A vous de bosser.
+Le but de cet article n’est pas d’expliquer finement comment utiliser Vagrant. Il y a d’autres tutoriels de disponibles. Vous pouvez commencer par l’article du site &lt;a href=&quot;http://digitalshore.io/set-up-a-local-linux-development-environment-with-vagrant/&quot;&gt;DigitalShore
+&lt;/a&gt; que j’ai utilisé pour découvrir Vagrant.&lt;/p&gt;
+
+&lt;h2 id=&quot;exemple-de-vagrantfile--astuces&quot;&gt;Exemple de Vagrantfile &amp;amp; astuces&lt;/h2&gt;
+
+&lt;h3 id=&quot;mon-vagrantfile&quot;&gt;Mon Vagrantfile&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# encoding: utf-8&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# -*- mode: ruby -*-&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# vi: set ft=ruby :&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Box / OS&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;VAGRANT_BOX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ubuntu/trusty64'&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Memorable name for your VM&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;VM_NAME&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'oncleben31cc-vm'&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# VM User - 'vagrant' by default&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;VM_USER&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'vagrant'&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Username on your Mac&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;MAC_USER&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'yourUsername'&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Host folder to sync&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;HOST_PATH&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/Users/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;MAC_USER&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/pathToYourFolder/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;VM_NAME&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Where to sync to on Guest - 'vagrant' is the default user name&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;GUEST_PATH&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/home/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;VM_USER&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;VM_NAME&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# # VM Port - uncomment this to use NAT instead of DHCP&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# VM_PORT   = 8080&lt;/span&gt;
+
+
+&lt;span class=&quot;no&quot;&gt;Vagrant&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Vagrant box from Hashicorp&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;box&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;VAGRANT_BOX&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Actual machine name&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;hostname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;VM_NAME&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Set VM name in Virtualbox&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;provider&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;virtualbox&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;VM_NAME&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;memory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Set the timezone to the host timezone&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Vagrant&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;has_plugin?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;vagrant-timezone&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timezone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:host&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;#DHCP -- comment this out if planning on using NAT instead&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#config.vm.network &quot;private_network&quot;, type: &quot;dhcp&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# # Port forwarding -- uncomment this to use NAT instead of DHCP&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;network&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;forwarded_port&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;guest: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;host: &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;host_ip: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;127.0.0.1&quot;&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Sync folder&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;synced_folder&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;HOST_PATH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;GUEST_PATH&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Disable default Vagrant folder, we'll use a unique path per project&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;synced_folder&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'.'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/home/'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;VM_USER&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;disabled: &lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;# Install Apache, Git, Ruby 2.3.x, and Jekyll Gems&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;vm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;provision&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;shell&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;inline: &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SHELL&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+    apt-get update
+    apt-get install -y apache2
+    apt-get install -y git
+
+    apt-add-repository ppa:brightbox/ruby-ng
+    apt-get update
+    apt-get install -y ruby2.3
+    apt-get install -y ruby2.3-dev
+    #gem install jekyll
+    gem install bundler
+    #gem install jekyll-paginate
+
+    #Pour github pages
+    apt-get install -y build-essential patch
+    apt-get install -y ruby-dev zlib1g-dev liblzma-dev
+    apt-get install -y nodejs
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;  SHELL&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Comparé au fichier fourni sur le site de DigitalShore, j’ai ajouté :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;une référence à un plugin pour synchroniser le fuseau horaire (cf. plus bas) ;&lt;/li&gt;
+  &lt;li&gt;une référence au Gem &lt;code class=&quot;highlighter-rouge&quot;&gt;Bundler&lt;/code&gt; qui est utilisé dans l’installation et le déploiement de Jekyll depuis je ne sais plus quelle version.&lt;/li&gt;
+  &lt;li&gt;plusieurs lignes nécessaire au fonctionnement de Jekyll hébergé sur Github grâce au gem github-pages.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;rsoudre-les-erreurs-lies-au-virtualbox-guest-additions&quot;&gt;Résoudre les erreurs liées au VirtualBox “Guest Additions”&lt;/h3&gt;
+&lt;p&gt;Si vous regardez attentivement les différents messages affichés lors du démarrage de la VM, vous devriez voir des messages d’avertissement du type:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;The guest additions on this VM do not match the installed version of VirtualBox!&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Une solution consiste à faire appel à un plugin Vagrant qui s’occupera de résoudre le problème tout seul: &lt;a href=&quot;https://github.com/dotless-de/vagrant-vbguest&quot;&gt;vagrant-vbguest&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;synchroniser-le-fuseau-horaire&quot;&gt;Synchroniser le fuseau horaire&lt;/h3&gt;
+&lt;p&gt;Jekyll utilise la date courante pour savoir si un post doit être publié ou non. Tous les articles qui ont une date dans le futur sont ignorés. Cela m’a posé quelques problèmes, car par défaut, la machine virtuelle n’est pas sur le même fuseau horaire.
+Une solution consiste à installer le plugin Vagrant  &lt;a href=&quot;https://github.com/tmatilai/vagrant-timezone&quot;&gt;vagrant-timezone&lt;/a&gt; et à ajouter le code suivant dans le &lt;code class=&quot;highlighter-rouge&quot;&gt;Vagrantfile&lt;/code&gt; :&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Set the timezone to the host timezone&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Vagrant&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;has_plugin?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;vagrant-timezone&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timezone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:host&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;installation-de-jekyll-et-cration-de-votre-premier-blog-statique&quot;&gt;Installation de Jekyll et création de votre premier blog statique&lt;/h2&gt;
+&lt;p&gt;Il n’y a pas vraiment d’installation, car Vagrant s’est chargé d’installer toutes les dépendances lors de la création de la VM.&lt;/p&gt;
+
+&lt;p&gt;Pour créer votre premier site avec Jekyll&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;vagrant up
+vagrant ssh
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /chemin/vers/le/repertoire/contenant/les/sources/de/votre/site
+jekyll new mon-super-site-statique
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;mon-super-site-statique
+bundle install
+bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve --host&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.0.0.0 --force_polling&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;La dernière ligne est un peu différente de ce qui est indiqué &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;sur le site officiel de Jekyll&lt;/a&gt;. Les deux derniers arguments permettent de rendre le serveur jekyll accessible depuis l’extérieur de la VM et rendre la régénération des pages, sur la detection d’un changement de fichier, fonctionnelle.&lt;/p&gt;
+
+&lt;p&gt;Il ne reste donc plus qu’à utiliser votre navigateur préféré pour consulter l’url  &lt;code class=&quot;highlighter-rouge&quot;&gt;http://127.0.0.1:4000&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Au moment où j’écris cet article, il y a un bug avec le thème minima par défaut. Si vous avez l’impression que votre feuille de style CSS n’est pas appliquée, allez éditer le fichier &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; et remplacez :&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;ss&quot;&gt;url: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;example.com&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;par:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;ss&quot;&gt;url: &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Vous connaissez maintenant les avantages de l’utilisation d’une machine virtuelle configurée automatiquement par Vagrant pour vos dévelopement. Vous maitrisé les bases pour mettre en place ce type de solution.
+A vous de jouer maintenant pour personnaliser votre site. Je vous conseille de lire la &lt;a href=&quot;https://jekyllrb.com/docs/home/&quot;&gt;documentation&lt;/a&gt; pour bien débuter.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 18 Sep 2016 00:00:00 +0000</pubDate>
+        <link>/article/jekyll-vagrant-virtualbox/</link>
+        <guid isPermaLink="true">/article/jekyll-vagrant-virtualbox/</guid>
+        
+        <category>jekyll</category>
+        
+        <category>vagrant</category>
+        
+        
+        <category>article</category>
+        
+      </item>
+    
+      <item>
+        <title>Reboot!</title>
+        <description>&lt;p&gt;Deuxième reboot de ce blog.&lt;/p&gt;
+
+&lt;p&gt;Il n’avait pas été mis à jour depuis plusieurs années et le contenu précédent était obsolète. J’ai hésité à le supprimer totalement pour éviter de diffuser de mauvaises informations, mais au final j’ai préféré le rebooter pour les raisons suivantes :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;j’ai encore des choses à partager ;&lt;/li&gt;
+  &lt;li&gt;j’en profite pour migrer vers un blog statique basé sur &lt;a href=&quot;https://jekyllrb.com/&quot; title=&quot;Site officiel de Jekyll&quot;&gt;Jekyll&lt;/a&gt;. Au revoir CMS et bases de données ;&lt;/li&gt;
+  &lt;li&gt;j’en profite pour faire des TP impliquant une &lt;strong&gt;machine virtuelle&lt;/strong&gt;, &lt;strong&gt;git&lt;/strong&gt;, &lt;strong&gt;Github Pages&lt;/strong&gt; ainsi que des solutions &lt;strong&gt;d’Intégration Continue&lt;/strong&gt; et de &lt;strong&gt;Déploiement Continue&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;J’espère que vous le trouverez agréable à consulter. Et n’hésitez pas à me dire en commentaire s’il y a des sujets que vous voulez revoir.&lt;/p&gt;
+
+&lt;p&gt;Oncleben31.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 15 Sep 2016 00:00:00 +0000</pubDate>
+        <link>/article/reboot/</link>
+        <guid isPermaLink="true">/article/reboot/</guid>
+        
+        
+        <category>article</category>
+        
+      </item>
+    
+  </channel>
+</rss>
