@@ -6,8 +6,8 @@
 </description>
     <link>/</link>
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 23 Oct 2016 19:46:10 +0000</pubDate>
-    <lastBuildDate>Sun, 23 Oct 2016 19:46:10 +0000</lastBuildDate>
+    <pubDate>Sun, 23 Oct 2016 20:14:14 +0000</pubDate>
+    <lastBuildDate>Sun, 23 Oct 2016 20:14:14 +0000</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -80,9 +80,9 @@ Le theme minima dans cette version avait besoin d’être modifié pour fonction
 
 &lt;h2 id=&quot;la-branche&quot;&gt;La branche&lt;/h2&gt;
 
-&lt;p&gt;Dans la documentation on trouves une contrainte historique qui consiste à demander l’installation des sources Jekyll dans la branche &lt;code class=&quot;highlighter-rouge&quot;&gt;gh-pages&lt;/code&gt;. En faite, vous pouvez mettre vos sources dans n’importe quelle branche à partir du moment où vous l’indiquez dans les paramétrages de votre dépôt.&lt;/p&gt;
+&lt;p&gt;Pour pouvoir utiliser Github Pages pour héberger votre site vous devez installer vos sources Jekyll dans la branche &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; ou &lt;code class=&quot;highlighter-rouge&quot;&gt;gh-pages&lt;/code&gt;. Attention, si vous utilisez le dépôt &lt;code class=&quot;highlighter-rouge&quot;&gt;votre_pseudo.github.io&lt;/code&gt;, vous ne pouvez utiliser que la branche &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Je trouve que la branche &lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; est plus pratique dans le cadre de mon blog.&lt;/p&gt;
+&lt;p&gt;Le choix du nom du dépôt et de la branche de travail doit être “réfléchi” car il donne des contraintes à prendre en compte si vous voulez faire une génération hors Github ou si vous voulez utiliser votre nom de domaine personnalisé.&lt;/p&gt;
 
 &lt;h2 id=&quot;les-contournements&quot;&gt;Les contournements&lt;/h2&gt;
 
