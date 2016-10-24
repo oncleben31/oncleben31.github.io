@@ -4,11 +4,11 @@
     <title>Oncleben31.cc</title>
     <description>Les contributions à l'Open Source et les découvertes d'Oncleben31 partagées avec l'Internet mondial.
 </description>
-    <link>/</link>
-    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 24 Oct 2016 07:37:09 +0000</pubDate>
-    <lastBuildDate>Mon, 24 Oct 2016 07:37:09 +0000</lastBuildDate>
-    <generator>Jekyll v3.2.1</generator>
+    <link>http://oncleben31.cc/</link>
+    <atom:link href="http://oncleben31.cc/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 24 Oct 2016 20:58:09 +0000</pubDate>
+    <lastBuildDate>Mon, 24 Oct 2016 20:58:09 +0000</lastBuildDate>
+    <generator>Jekyll v3.3.0</generator>
     
       <item>
         <title>Déploiement de Jekyll sur Github Pages</title>
@@ -98,8 +98,8 @@ Le theme minima dans cette version avait besoin d’être modifié pour fonction
 &lt;p&gt;Le second contournement concerne le nom de domaine. Il est relativement facile d’acheter un nom de domaine et de le rediriger vers Github pour remplacer les URL du type &lt;code class=&quot;highlighter-rouge&quot;&gt;votre_pseudo.github.io/votre_depot&lt;/code&gt;. Par contre, tous les dépôt de votre compte utilisant Github Pages seront accessibles sur votre nom de domaine. Le contournement consiste à créer une organisation pour votre projet. D’héberger le dépôt de votre site avec cette organisation et de diriger votre nom de domaine vers le dépôt de l’organisation. Ainsi le nom de domaine ne sera pas pollué par vos autres dépôts.&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Oct 2016 00:00:00 +0000</pubDate>
-        <link>/article/deploiement-jekyll-sur-github-pages/</link>
-        <guid isPermaLink="true">/article/deploiement-jekyll-sur-github-pages/</guid>
+        <link>http://oncleben31.cc/article/deploiement-jekyll-sur-github-pages/</link>
+        <guid isPermaLink="true">http://oncleben31.cc/article/deploiement-jekyll-sur-github-pages/</guid>
         
         <category>github</category>
         
@@ -179,8 +179,8 @@ Le theme minima dans cette version avait besoin d’être modifié pour fonction
 &lt;p&gt;J’espère que cette initiation sera utile à ceux qui débutent en leur permettant d’éviter de réaliser trop tard les optimisations nécessaires pour améliorer son référencement. Les autres, vous pouvez compléter ou corriger si nécessaire :wink:&lt;/p&gt;
 </description>
         <pubDate>Tue, 04 Oct 2016 00:00:00 +0000</pubDate>
-        <link>/article/seo-initiation-referencement/</link>
-        <guid isPermaLink="true">/article/seo-initiation-referencement/</guid>
+        <link>http://oncleben31.cc/article/seo-initiation-referencement/</link>
+        <guid isPermaLink="true">http://oncleben31.cc/article/seo-initiation-referencement/</guid>
         
         <category>SEO</category>
         
@@ -385,8 +385,8 @@ bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve --host&lt
 A vous de jouer maintenant pour personnaliser votre site. Je vous conseille de lire la &lt;a href=&quot;https://jekyllrb.com/docs/home/&quot;&gt;documentation&lt;/a&gt; pour bien débuter.&lt;/p&gt;
 </description>
         <pubDate>Sun, 18 Sep 2016 00:00:00 +0000</pubDate>
-        <link>/article/jekyll-vagrant-virtualbox/</link>
-        <guid isPermaLink="true">/article/jekyll-vagrant-virtualbox/</guid>
+        <link>http://oncleben31.cc/article/jekyll-vagrant-virtualbox/</link>
+        <guid isPermaLink="true">http://oncleben31.cc/article/jekyll-vagrant-virtualbox/</guid>
         
         <category>jekyll</category>
         
@@ -414,8 +414,8 @@ A vous de jouer maintenant pour personnaliser votre site. Je vous conseille de l
 &lt;p&gt;Oncleben31.&lt;/p&gt;
 </description>
         <pubDate>Thu, 15 Sep 2016 00:00:00 +0000</pubDate>
-        <link>/article/reboot/</link>
-        <guid isPermaLink="true">/article/reboot/</guid>
+        <link>http://oncleben31.cc/article/reboot/</link>
+        <guid isPermaLink="true">http://oncleben31.cc/article/reboot/</guid>
         
         
         <category>article</category>

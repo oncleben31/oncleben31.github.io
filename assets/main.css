@@ -73,10 +73,6 @@ a {
   a:hover {
     color: #111;
     text-decoration: underline; }
-  .social-media-list a:hover {
-    text-decoration: none; }
-    .social-media-list a:hover .username {
-      text-decoration: underline; }
 
 /**
  * Blockquotes
@@ -145,11 +141,6 @@ pre {
   vertical-align: middle; }
   .icon > svg path {
     fill: #828282; }
-
-.social-media-list .icon {
-  padding-right: 5px; }
-.social-media-list li + li {
-  padding-top: 5px; }
 
 /**
  * Site header

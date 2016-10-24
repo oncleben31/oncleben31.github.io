@@ -12,4 +12,4 @@ User-agent: *
   
 
 
-Sitemap: /sitemap.xml
+Sitemap: http://oncleben31.cc/sitemap.xml
