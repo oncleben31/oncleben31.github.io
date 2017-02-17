@@ -6,9 +6,9 @@
 </description>
     <link>http://oncleben31.cc/</link>
     <atom:link href="http://oncleben31.cc/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 26 Oct 2016 19:43:51 +0000</pubDate>
-    <lastBuildDate>Wed, 26 Oct 2016 19:43:51 +0000</lastBuildDate>
-    <generator>Jekyll v3.3.0</generator>
+    <pubDate>Fri, 17 Feb 2017 23:12:23 +0000</pubDate>
+    <lastBuildDate>Fri, 17 Feb 2017 23:12:23 +0000</lastBuildDate>
+    <generator>Jekyll v3.4.0</generator>
     
       <item>
         <title>Déploiement de Jekyll sur Github Pages</title>
@@ -18,7 +18,7 @@
 
 &lt;p&gt;Dans cet article, je donne quelques astuces que j’ai utilisées pour réussir l’installation d’un site Jekyll avec le thème minima sur Github Pages. Par contre, je ne reprendrai pas toutes les étapes qui sont décrites à plein d’autres endroits sur Internet.&lt;/p&gt;
 
-&lt;h2 id=&quot;avantages-et-inconvnients&quot;&gt;Avantages et Inconvénients&lt;/h2&gt;
+&lt;h2 id=&quot;avantages-et-inconvénients&quot;&gt;Avantages et Inconvénients&lt;/h2&gt;
 
 &lt;p&gt;Pour commencer une petite comparaison des avantages et inconvénients liées au choix d’héberger son Jekyll sur Github Pages. Vous trouverez ci-dessous des évidences mais aussi des subtilités que j’ai découvertes en testant ou creusant certaines fonctionnalités.&lt;/p&gt;
 
@@ -47,13 +47,13 @@
 Le theme minima dans cette version avait besoin d’être modifié pour fonctionner correctement en local. Mes patchs sont disponibles dans les commits suivants :&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;046abe81ffb0f88c698cb6b5c10f5a489ce6a14d&lt;/li&gt;
-  &lt;li&gt;c5f4ca38e4d81a4e822f4e3f0b9cbe8a00a781cb&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jekyll/minima/pull/46/commits/046abe81ffb0f88c698cb6b5c10f5a489ce6a14d&quot;&gt;046abe81ffb0f88c698cb6b5c10f5a489ce6a14d&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jekyll/minima/pull/46/commits/c5f4ca38e4d81a4e822f4e3f0b9cbe8a00a781cb&quot;&gt;c5f4ca38e4d81a4e822f4e3f0b9cbe8a00a781cb&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Ces correctifs sont inclus depuis la version v2.0.0 de minima.&lt;/p&gt;
 
-&lt;h2 id=&quot;le-paramtrage&quot;&gt;Le paramétrage&lt;/h2&gt;
+&lt;h2 id=&quot;le-paramétrage&quot;&gt;Le paramétrage&lt;/h2&gt;
 
 &lt;p&gt;Il y a une astuce pour que le site fonctionne en local et sur Github Pages. Ma solution consiste a utiliser deux fichiers de configuration:&lt;/p&gt;
 
@@ -152,7 +152,7 @@ Le theme minima dans cette version avait besoin d’être modifié pour fonction
   &lt;li&gt;Du coté de Jekyll, il y a moins de choix car pas mal de paramètres ayant un impact sur le référencement sont éditables lors de la création du contenu. Il y a le plugin &lt;a href=&quot;https://github.com/jekyll/jekyll-seo-tag&quot;&gt;jekyll-seo-tag&lt;/a&gt; qui permet quand même de faciliter cette optimisation.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;les-nouveauts&quot;&gt;Les nouveautés&lt;/h2&gt;
+&lt;h2 id=&quot;les-nouveautés&quot;&gt;Les nouveautés&lt;/h2&gt;
 
 &lt;p&gt;Depuis la première publication de cet article, de nouveaux paramètres importants ont émergé dans le référencement.&lt;/p&gt;
 
@@ -163,7 +163,7 @@ Le theme minima dans cette version avait besoin d’être modifié pour fonction
 &lt;p&gt;Un troisième paramètre pris en compte est &lt;strong&gt;l’utilisation
  d’un cryptage HTTPS&lt;/strong&gt; pour votre site. Google a décidé de favoriser ceux qui sont sensibles à la sécurité. Si vous utiliser Github Pages pour héberger votre site statique vous pouvez bénéficier d’une adresse utilisant le protocol HTPPS  (sauf si vous utilisez un nom de domaine personnalisé).&lt;/p&gt;
 
-&lt;h2 id=&quot;rester-inform&quot;&gt;Rester informé&lt;/h2&gt;
+&lt;h2 id=&quot;rester-informé&quot;&gt;Rester informé&lt;/h2&gt;
 
 &lt;p&gt;Le dernier conseil que je pourrai donner : si vous voulez en savoir plus il faut lire régulièrement les sites spécialisés en SEO sur internet. Les moteurs de recherche changeant régulièrement leur algorithmes, il faut savoir réagir pour garder ses pages bien positionnées dans les résultats des moteurs de recherche.&lt;/p&gt;
 
@@ -216,7 +216,7 @@ Le theme minima dans cette version avait besoin d’être modifié pour fonction
 
 &lt;h2 id=&quot;comment-&quot;&gt;Comment ?&lt;/h2&gt;
 
-&lt;h3 id=&quot;tlchargements-et-installations&quot;&gt;Téléchargements et Installations&lt;/h3&gt;
+&lt;h3 id=&quot;téléchargements-et-installations&quot;&gt;Téléchargements et Installations&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.vagrantup.com/&quot;&gt;Vagrant&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/&quot;&gt;VirtualBox&lt;/a&gt;&lt;/li&gt;
@@ -224,7 +224,7 @@ Le theme minima dans cette version avait besoin d’être modifié pour fonction
 
 &lt;p&gt;Vous pouvez utiliser un autre moteur de machine virtuelle si vous voulez. L’avantage de celui-ci est qu’il est open source et populaire.&lt;/p&gt;
 
-&lt;h3 id=&quot;paramtrage-de-la-machine-virtuelle&quot;&gt;Paramétrage de la machine virtuelle.&lt;/h3&gt;
+&lt;h3 id=&quot;paramétrage-de-la-machine-virtuelle&quot;&gt;Paramétrage de la machine virtuelle.&lt;/h3&gt;
 &lt;p&gt;L’idée c’est de partir de rien ! Créez le répertoire qui va héberger votre VM et initiez le fichier de paramétrage &lt;code class=&quot;highlighter-rouge&quot;&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;mkdir monProjet-vm
@@ -233,14 +233,14 @@ touch Vagrantfile&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Vous trouverez plus bas un exemple avec le fichier &lt;code class=&quot;highlighter-rouge&quot;&gt;Vagrant&lt;/code&gt; que j’utilise en ce moment.&lt;/p&gt;
 
-&lt;h3 id=&quot;lancement-de-la-cration-et-dmarrage-de-la-vm&quot;&gt;Lancement de la création et démarrage de la VM&lt;/h3&gt;
+&lt;h3 id=&quot;lancement-de-la-création-et-démarrage-de-la-vm&quot;&gt;Lancement de la création et démarrage de la VM&lt;/h3&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;vagrant up&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Lors du premier lancement la VM sera créée. C’est-à-dire que l’image sera téléchargée, ensuite la VM sera lancée et toutes les dépendances paramétrées seront installées.
 Lors des lancements suivants, la VM sera juste démarrée.&lt;/p&gt;
 
-&lt;h3 id=&quot;connexion--la-vm-en-ssh&quot;&gt;Connexion à la VM en SSH&lt;/h3&gt;
+&lt;h3 id=&quot;connexion-à-la-vm-en-ssh&quot;&gt;Connexion à la VM en SSH&lt;/h3&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;vagrant ssh&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
@@ -340,7 +340,7 @@ Le but de cet article n’est pas d’expliquer finement comment utiliser Vagran
   &lt;li&gt;plusieurs lignes nécessaire au fonctionnement de Jekyll hébergé sur Github grâce au gem github-pages.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;rsoudre-les-erreurs-lies-au-virtualbox-guest-additions&quot;&gt;Résoudre les erreurs liées au VirtualBox “Guest Additions”&lt;/h3&gt;
+&lt;h3 id=&quot;résoudre-les-erreurs-liées-au-virtualbox-guest-additions&quot;&gt;Résoudre les erreurs liées au VirtualBox “Guest Additions”&lt;/h3&gt;
 &lt;p&gt;Si vous regardez attentivement les différents messages affichés lors du démarrage de la VM, vous devriez voir des messages d’avertissement du type:&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;The guest additions on this VM do not match the installed version of VirtualBox!&lt;/code&gt;&lt;/p&gt;
@@ -356,7 +356,7 @@ Une solution consiste à installer le plugin Vagrant  &lt;a href=&quot;https://g
   &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;timezone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:host&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h2 id=&quot;installation-de-jekyll-et-cration-de-votre-premier-blog-statique&quot;&gt;Installation de Jekyll et création de votre premier blog statique&lt;/h2&gt;
+&lt;h2 id=&quot;installation-de-jekyll-et-création-de-votre-premier-blog-statique&quot;&gt;Installation de Jekyll et création de votre premier blog statique&lt;/h2&gt;
 &lt;p&gt;Il n’y a pas vraiment d’installation, car Vagrant s’est chargé d’installer toutes les dépendances lors de la création de la VM.&lt;/p&gt;
 
 &lt;p&gt;Pour créer votre premier site avec Jekyll&lt;/p&gt;

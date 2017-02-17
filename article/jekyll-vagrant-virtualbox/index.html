@@ -150,7 +150,7 @@ Le 18 septembre 2016
 
 <h2 id="comment-">Comment ?</h2>
 
-<h3 id="tlchargements-et-installations">Téléchargements et Installations</h3>
+<h3 id="téléchargements-et-installations">Téléchargements et Installations</h3>
 <ul>
   <li><a href="https://www.vagrantup.com/">Vagrant</a></li>
   <li><a href="https://www.virtualbox.org/">VirtualBox</a></li>
@@ -158,7 +158,7 @@ Le 18 septembre 2016
 
 <p>Vous pouvez utiliser un autre moteur de machine virtuelle si vous voulez. L’avantage de celui-ci est qu’il est open source et populaire.</p>
 
-<h3 id="paramtrage-de-la-machine-virtuelle">Paramétrage de la machine virtuelle.</h3>
+<h3 id="paramétrage-de-la-machine-virtuelle">Paramétrage de la machine virtuelle.</h3>
 <p>L’idée c’est de partir de rien ! Créez le répertoire qui va héberger votre VM et initiez le fichier de paramétrage <code class="highlighter-rouge">Vagrantfile</code>.</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">mkdir monProjet-vm
@@ -167,14 +167,14 @@ touch Vagrantfile</code></pre></figure>
 
 <p>Vous trouverez plus bas un exemple avec le fichier <code class="highlighter-rouge">Vagrant</code> que j’utilise en ce moment.</p>
 
-<h3 id="lancement-de-la-cration-et-dmarrage-de-la-vm">Lancement de la création et démarrage de la VM</h3>
+<h3 id="lancement-de-la-création-et-démarrage-de-la-vm">Lancement de la création et démarrage de la VM</h3>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">vagrant up</code></pre></figure>
 
 <p>Lors du premier lancement la VM sera créée. C’est-à-dire que l’image sera téléchargée, ensuite la VM sera lancée et toutes les dépendances paramétrées seront installées.
 Lors des lancements suivants, la VM sera juste démarrée.</p>
 
-<h3 id="connexion--la-vm-en-ssh">Connexion à la VM en SSH</h3>
+<h3 id="connexion-à-la-vm-en-ssh">Connexion à la VM en SSH</h3>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">vagrant ssh</code></pre></figure>
 
@@ -274,7 +274,7 @@ Le but de cet article n’est pas d’expliquer finement comment utiliser Vagran
   <li>plusieurs lignes nécessaire au fonctionnement de Jekyll hébergé sur Github grâce au gem github-pages.</li>
 </ul>
 
-<h3 id="rsoudre-les-erreurs-lies-au-virtualbox-guest-additions">Résoudre les erreurs liées au VirtualBox “Guest Additions”</h3>
+<h3 id="résoudre-les-erreurs-liées-au-virtualbox-guest-additions">Résoudre les erreurs liées au VirtualBox “Guest Additions”</h3>
 <p>Si vous regardez attentivement les différents messages affichés lors du démarrage de la VM, vous devriez voir des messages d’avertissement du type:</p>
 
 <p><code class="highlighter-rouge">The guest additions on this VM do not match the installed version of VirtualBox!</code></p>
@@ -290,7 +290,7 @@ Une solution consiste à installer le plugin Vagrant  <a href="https://github.co
   <span class="n">config</span><span class="p">.</span><span class="nf">timezone</span><span class="p">.</span><span class="nf">value</span> <span class="o">=</span> <span class="ss">:host</span>
 <span class="k">end</span></code></pre></figure>
 
-<h2 id="installation-de-jekyll-et-cration-de-votre-premier-blog-statique">Installation de Jekyll et création de votre premier blog statique</h2>
+<h2 id="installation-de-jekyll-et-création-de-votre-premier-blog-statique">Installation de Jekyll et création de votre premier blog statique</h2>
 <p>Il n’y a pas vraiment d’installation, car Vagrant s’est chargé d’installer toutes les dépendances lors de la création de la VM.</p>
 
 <p>Pour créer votre premier site avec Jekyll</p>
