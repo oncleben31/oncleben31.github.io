@@ -6,8 +6,8 @@
 </description>
     <link>http://oncleben31.cc/</link>
     <atom:link href="http://oncleben31.cc/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 19 Feb 2017 00:34:28 +0000</pubDate>
-    <lastBuildDate>Sun, 19 Feb 2017 00:34:28 +0000</lastBuildDate>
+    <pubDate>Sun, 19 Feb 2017 00:48:06 +0000</pubDate>
+    <lastBuildDate>Sun, 19 Feb 2017 00:48:06 +0000</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -161,7 +161,7 @@ Le theme minima dans cette version avait besoin d’être modifié pour fonction
 &lt;p&gt;Le second paramètre notable est &lt;strong&gt;l’intégration de vos liens aux réseaux sociaux&lt;/strong&gt;. En effet les réseaux sociaux sont de plus en plus source de trafic, il est donc primordial d’optimiser la façon dont apparaissent les liens vers vos pages quand ils sont publiés sur ces réseaux. Je ne vais pas rentrer dans le détail, internet est votre ami pour approfondir ce sujet.&lt;/p&gt;
 
 &lt;p&gt;Un troisième paramètre pris en compte est &lt;strong&gt;l’utilisation
- d’un cryptage HTTPS&lt;/strong&gt; pour votre site. Google a décidé de favoriser ceux qui sont sensibles à la sécurité. Si vous utiliser Github Pages pour héberger votre site statique vous pouvez bénéficier d’une adresse utilisant le protocol HTPPS  (sauf si vous utilisez un nom de domaine personnalisé).&lt;/p&gt;
+ d’un cryptage HTTPS&lt;/strong&gt; pour votre site. Google a décidé de favoriser ceux qui sont sensibles à la sécurité. Si vous utilisez Github Pages pour héberger votre site statique vous pouvez bénéficier d’une adresse utilisant le protocol HTTPS  (sauf si vous utilisez un nom de domaine personnalisé).&lt;/p&gt;
 
 &lt;h2 id=&quot;rester-informé&quot;&gt;Rester informé&lt;/h2&gt;
 
