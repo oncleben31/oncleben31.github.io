@@ -6,8 +6,8 @@
 </description>
     <link>http://oncleben31.cc/</link>
     <atom:link href="http://oncleben31.cc/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 18 Feb 2017 21:35:44 +0000</pubDate>
-    <lastBuildDate>Sat, 18 Feb 2017 21:35:44 +0000</lastBuildDate>
+    <pubDate>Sun, 19 Feb 2017 00:34:28 +0000</pubDate>
+    <lastBuildDate>Sun, 19 Feb 2017 00:34:28 +0000</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -90,7 +90,7 @@ Le theme minima dans cette version avait besoin d’être modifié pour fonction
 
 &lt;h3 id=&quot;github-pages-et-plugins&quot;&gt;Github Pages et plugins&lt;/h3&gt;
 
-&lt;p&gt;Le premier contournement concerne les plugins qui ne sont pas toléré par Github Pages. Le contournement consiste à continuer à gérer ses sources sur Github (sur la branche master par exemple), mais faire la génération des pages a l’extérieurs de Github et de les synchroniser avec la branche gh-pages. La génération pouvant se la faire manuellement en local sur votre machine, ou automatiquement avec un outil d’intégration continue comme &lt;a href=&quot;http://travis-ci.org&quot;&gt;Travis CI&lt;/a&gt; par exemple.&lt;/p&gt;
+&lt;p&gt;Le premier contournement concerne les plugins qui ne sont pas toléré par Github Pages. Le contournement consiste à continuer à gérer ses sources sur Github (sur la branche master par exemple), mais faire la génération des pages a l’extérieurs de Github et de les synchroniser avec la branche gh-pages. La génération pouvant se la faire manuellement en local sur votre machine, ou automatiquement avec un outil d’intégration continue comme &lt;a href=&quot;https://travis-ci.org&quot;&gt;Travis CI&lt;/a&gt; par exemple.&lt;/p&gt;
 
 &lt;p&gt;Si vous voulez allez plus loin dans ce type de solution je vous conseille de regarder &lt;a href=&quot;https://gist.github.com/domenic/ec8b0fc8ab45f39403dd&quot;&gt;le Gist de Domenic Denicola&lt;/a&gt;.&lt;/p&gt;
 
@@ -170,8 +170,8 @@ Le theme minima dans cette version avait besoin d’être modifié pour fonction
 &lt;p&gt;&lt;strong&gt;Liste de lecture non exhaustive et accessible aux débutants :&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.seomix.fr/&quot;&gt;Seomix&lt;/a&gt; et &lt;a href=&quot;http://floriankarmen.com/&quot;&gt;Le blog de Florian Karmen&lt;/a&gt; (en français)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://yoast.com/&quot;&gt;Yoast&lt;/a&gt; et le blog de &lt;a href=&quot;http://www.mattcutts.com/blog/type/googleseo/&quot;&gt;Matt Cutts&lt;/a&gt; (en anglais)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.seomix.fr/&quot;&gt;Seomix&lt;/a&gt; et &lt;a href=&quot;https://floriankarmen.com/&quot;&gt;Le blog de Florian Karmen&lt;/a&gt; (en français)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://yoast.com/&quot;&gt;Yoast&lt;/a&gt; et le blog de &lt;a href=&quot;https://www.mattcutts.com/blog/type/googleseo/&quot;&gt;Matt Cutts&lt;/a&gt; (en anglais)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;en-conclusion&quot;&gt;En conclusion&lt;/h2&gt;
